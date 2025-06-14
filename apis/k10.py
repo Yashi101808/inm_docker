@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import io
 
 def run_kpi(params):
-    file_path = params.get("file_path", r"Market_data/KPI-10.csv")
+    file_path = params.get("file_path", "Market_data/KPI-10.csv")
     try:
         # Load and clean data
         df = pd.read_csv(file_path, skiprows=2)
@@ -44,7 +44,7 @@ def run_kpi(params):
         return {"error": f"Unexpected error: {str(e)}"}
 
 
-def get_plot_image(file_path=r"market/kpi_project_final/data/KPI-10.csv"):
+def get_plot_image(file_path="Market_data/KPI-10.csv"):
     try:
         # Load and clean data (same as above)
         df = pd.read_csv(file_path, skiprows=2)

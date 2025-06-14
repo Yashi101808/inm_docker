@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 
 def generate_sentiment_pie_chart(brand=None):
-    file_path = r"data\news n mentions + sentiment.csv"
+    file_path = "data/news n mentions + sentiment.csv"
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
     if not {'Brand', 'Sentiment'}.issubset(df.columns):

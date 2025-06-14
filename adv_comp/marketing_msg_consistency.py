@@ -16,7 +16,7 @@ def marketing_message_scores(csv_path: str = "data/Competitor Marketing Message 
     return result.to_dict(orient="records")
 
 
-def marketing_message_consistency_plot(csv_path: str = r"data\Competitor Marketing Message Co.csv") -> bytes:
+def marketing_message_consistency_plot(csv_path: str = "data/Competitor Marketing Message Co.csv") -> bytes:
     """
     Returns a bar chart PNG showing the number of competitors by consistency level.
     """

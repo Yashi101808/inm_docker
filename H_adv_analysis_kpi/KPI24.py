@@ -6,7 +6,7 @@ def get_kpi24_sheet3_data():
     Reads and processes Sheet3 from KPI-24.xlsx, removes all rows with NaN or infinite values,
     and returns only fully valid, readable rows for JSON compliance.
     """
-    file_path = ("H_adv_analysis_data\KPI 24.xlsx")
+    file_path = ("H_adv_analysis_data/KPI 24.xlsx")
     df = pd.read_excel(file_path, sheet_name="Sheet3")
     # Replace inf/-inf with NaN
     df = df.replace([np.inf, -np.inf], np.nan)
@@ -21,7 +21,7 @@ def get_kpi24_qualitative_assessment_details():
     """
     Reads and processes 'Qualitative Assessment Details' from Sheet3, removing null/empty entries.
     """
-    file_path = "KPI_Data\KPI 24.xlsx"
+    file_path = "KPI_Data/KPI 24.xlsx"
     df = pd.read_excel(file_path, sheet_name="Sheet4")
     # Only keep the 'Qualitative Assessment Details' column if it exists
     col_candidates = [col for col in df.columns if 'Qualitative Assessment Details' in col]

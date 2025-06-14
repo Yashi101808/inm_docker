@@ -5,7 +5,7 @@ from io import BytesIO
 
 def generate_sent_news2_plot():
     # Step 1: Read file
-    file_path = r"data\news n mentions + sentiment.csv"
+    file_path = "data/news n mentions + sentiment.csv"
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()  # Clean column names
 

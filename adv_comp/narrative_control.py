@@ -15,7 +15,7 @@ def narrative_control_data(csv_path: str ="data/Competitor Narrative Control Sc.
     score_counts = df['Narrative Control Score'].value_counts()
     return {"table": table, "score_counts": score_counts.to_dict()}
 
-def narrative_control_plot(csv_path: str = r"data\Competitor Narrative Control Sc.csv"):
+def narrative_control_plot(csv_path: str = "data/Competitor Narrative Control Sc.csv"):
     df = pd.read_csv(csv_path)
     narrative_mapping = {
         '🟠 Moderate': 'Moderate',

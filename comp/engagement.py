@@ -4,7 +4,7 @@ from io import BytesIO
 
 def generate_engagement_plot():
     # Load the file
-    file_path = r"data\Competitor Social Media Engagem.csv"
+    file_path = "data/Competitor Social Media Engagem.csv"
     df = pd.read_csv(file_path)
 
     # Clean column names

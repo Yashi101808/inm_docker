@@ -36,7 +36,7 @@ def find_column(df, target_name):
 
 def run_kpi(params):
     """Processes KPI-2 CSV and returns average CAGR by midpoint year."""
-    file_path = params.get("file_path", "market/kpi_project_final/data/KPI-2.csv")
+    file_path = params.get("file_path", "Market_data/KPI-2.csv")
     df = pd.read_csv(file_path, skiprows=5)  # <-- skip metadata rows
     df.columns = df.columns.str.strip()
 

@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Hardcoded path to the Excel file
-EXCEL_FILE_PATH = "H_adv_analysis_data\KPI6.xlsx"
+EXCEL_FILE_PATH = "H_adv_analysis_data/KPI6.xlsx"
 
 def read_kpi6_excel():
     """

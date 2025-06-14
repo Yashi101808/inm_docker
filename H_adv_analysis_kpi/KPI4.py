@@ -4,7 +4,7 @@ from docx import Document
 
 router = APIRouter()
 
-def read_kpi4_docx(docx_path: str = "H_adv_analysis_data\KPI 4 representation.docx") -> str:
+def read_kpi4_docx(docx_path: str = "H_adv_analysis_data/KPI 4 representation.docx") -> str:
     """
     Reads the KPI-4-representation.docx file and returns its text content.
     """

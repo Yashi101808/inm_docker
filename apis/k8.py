@@ -55,7 +55,7 @@ def generate_bar_chart_base64(df):
 
 
 def run_kpi(params):
-    file_path = params.get("file_path", "market_data/KPI-8.csv")
+    file_path = params.get("file_path", "Market_data/KPI-8.csv")
     df = load_and_process_data(file_path)
 
     if df is not None and not df.empty:

@@ -5,7 +5,7 @@ def get_sheet1_data():
     """
     Reads and processes Sheet1 data, converting NaN to None for JSON compliance
     """
-    file_path = "H_adv_analysis_data\KPI 17.xlsx"
+    file_path = "H_adv_analysis_data/KPI 17.xlsx"
     df = pd.read_excel(file_path, sheet_name="Sheet1")
     
     # Convert NaN to None for JSON compatibility

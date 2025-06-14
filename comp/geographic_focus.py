@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_geographic_focus():
     # Step 1: Read the CSV file
-    file_path = r"data\Geographic Focus.csv"  # ✅ Update this path if needed
+    file_path = "data/Geographic Focus.csv"  # ✅ Update this path if needed
     df = pd.read_csv(file_path)
 
     # Step 2: Print column names to verify correct reading
@@ -41,7 +41,7 @@ def get_geographic_focus():
     print(df_sorted[['Brand', 'Focus', 'Region Category']])
 
     # Step 8: Export to a cleaned CSV
-    output_path = r"data\cleaned_geographic_focus.csv"
+    output_path = "data/cleaned_geographic_focus.csv"
     df_sorted.to_csv(output_path, index=False)
     print(f"\n Cleaned CSV saved to: {output_path}")
     

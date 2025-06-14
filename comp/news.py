@@ -4,7 +4,7 @@ from io import BytesIO
 
 def generate_news_mentions_plot():
     # 1. Load the CSV
-    file_path = r"data\news.csv"
+    file_path = "data/news.csv"
     df = pd.read_csv(file_path)
 
     # 2. Clean up column names

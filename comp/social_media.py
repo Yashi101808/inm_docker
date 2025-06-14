@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_social_media_presence():
     # Step 1: Read the CSV data into a DataFrame
-    file_path = r"data\Competitor Social Media Platfor.csv"  # Replace with your actual path
+    file_path = "data/Competitor Social Media Platfor.csv"  # Replace with your actual path
     df = pd.read_csv(file_path)
 
     # Step 2: Clean the data (if necessary, like fixing column names, handling missing values)

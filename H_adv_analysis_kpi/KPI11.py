@@ -1,7 +1,7 @@
 import os
 from fastapi.responses import FileResponse
 
-KPI11_FILE_PATH = "H_adv_analysis_data\KPI 11.docx"
+KPI11_FILE_PATH = "H_adv_analysis_data/KPI 11.docx"
 
 def get_docx_file_response():
     if not os.path.exists(KPI11_FILE_PATH):

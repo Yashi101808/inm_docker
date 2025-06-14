@@ -1,7 +1,7 @@
 import pandas as pd
 
 def get_storefront_data():
-    data_file = r"data\Competitor Online Storefront Pr.csv"
+    data_file = "data/Competitor Online Storefront Pr.csv"
     df = pd.read_csv(data_file)
 
     def check_online_storefront(row):

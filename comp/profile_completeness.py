@@ -6,7 +6,7 @@ router = APIRouter()
 @router.get("/profile-completeness")
 def get_profile_completeness():
     # Step 1: Read the competitor data from CSV
-    file_path = r"data\Competitor Profile Completeness.csv"
+    file_path = "data/Competitor Profile Completeness.csv"
     df = pd.read_csv(file_path)
 
     # Step 2: Scoring system (keeping High, Medium, Low, N/A as they are)
@@ -51,7 +51,7 @@ def get_profile_completeness():
     print(df_sorted)
 
     # Optionally: Export this table to a new CSV for reporting purposes
-    output_file = r'data\competitor_profile_completeness.csv'
+    output_file = 'data/competitor_profile_completeness.csv'
     df_sorted.to_csv(output_file, index=False)
 
     return df_sorted.to_dict(orient="records")

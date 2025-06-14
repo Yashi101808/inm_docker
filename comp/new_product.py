@@ -4,7 +4,7 @@ from io import BytesIO
 
 def generate_new_product_plot():
     # Step 1: Load the CSV file
-    file_path = "data\\Competitor New Product Launches.csv"
+    file_path = "data/Competitor New Product Launches.csv"
     df_product_launches = pd.read_csv(file_path)
 
     # Step 2: Clean up the data (remove extra spaces, ensure all data is in the correct format)

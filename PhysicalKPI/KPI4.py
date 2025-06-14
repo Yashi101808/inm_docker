@@ -9,7 +9,7 @@ app = FastAPI()
 router = APIRouter()
 
 # ✅ Update your file path
-FILE_PATH = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI4.csv"
+FILE_PATH = "PhysicalKPICSV/KPI4.csv"
 
 @router.get("/kpi4-psychographic-themes")
 async def generate_kpi4_graph():

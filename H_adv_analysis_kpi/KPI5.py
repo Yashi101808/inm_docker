@@ -7,7 +7,7 @@ from io import BytesIO
 
 matplotlib.use('Agg')  # Use non-GUI backend for server environments
 
-def get_kpi5_chart(excel_path: str = "H_adv_analysis_data\KPI5.xlsx", sheet_name: str = "KPI5") -> bytes:
+def get_kpi5_chart(excel_path: str = "H_adv_analysis_data/KPI5.xlsx", sheet_name: str = "KPI5") -> bytes:
     """
     Generate a bar chart for average engagement rate per content type from an Excel file.
 

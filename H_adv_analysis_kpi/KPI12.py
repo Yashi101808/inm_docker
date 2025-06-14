@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-KPI12_FILE_PATH = "H_adv_analysis_data\KPI 12.xlsx"
+KPI12_FILE_PATH = "H_adv_analysis_data/KPI 12.xlsx"
 
 def analyze_kpi12_data():
     try:

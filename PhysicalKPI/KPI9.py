@@ -5,7 +5,7 @@ import pandas as pd
 router = APIRouter()
 
 # ✅ Hardcoded file path (update if needed)
-FILE_PATH = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI9.csv"
+FILE_PATH = "PhysicalKPICSV/KPI9.csv"
 
 @router.get("/kpi9-observed-terms")
 async def list_observed_terms():

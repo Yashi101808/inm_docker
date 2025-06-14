@@ -4,7 +4,7 @@ from io import BytesIO
 
 def generate_traffic_plot():
     # Load the CSV
-    file_path = r"data\Competitor Website Traffic Esti.csv"
+    file_path = "data/Competitor Website Traffic Esti.csv"
     df = pd.read_csv(file_path)
 
     # Clean and convert visit numbers

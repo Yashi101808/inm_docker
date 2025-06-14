@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_pricing_tiers():
     # Load data from the specified file path
-    data_file = r"data\Competitor Pricing Tier Percept.csv"  # Use your provided file path
+    data_file = "data/Competitor Pricing Tier Percept.csv"  # Use your provided file path
     df = pd.read_csv(data_file)
 
     # Ensure 'Price per 100g (INR)' is numeric, handling any non-numeric values

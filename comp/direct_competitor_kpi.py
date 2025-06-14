@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_direct_competitor_kpi():
     # 1. Read the competitor CSV
-    file_path = r'data\direct competitors.csv'
+    file_path = 'data/direct competitors.csv'
     df = pd.read_csv(file_path)
 
     # 2. Clean column names and drop rows with missing values

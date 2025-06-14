@@ -7,12 +7,12 @@ from io import BytesIO
 def generate_breadth_plot():
     # === Step 1: Define CSV file paths ===
     category_files = {
-        'Namkeen': r'data\SKU NAMKEEN.csv',
-        'Sweets': r'data\SKU SWEETS.csv',
-        'Frozen Foods': r'data\SKU FROZEN FOODS.csv',
-        'Biscuits': r'data\SKU BISCUITS.csv',
-        'RTE': r'data\SKU RTE.csv',
-        'Chips': r'data\SKU CHIPS.csv'
+        'Namkeen': 'data/SKU NAMKEEN.csv',
+        'Sweets': 'data/SKU SWEETS.csv',
+        'Frozen Foods': 'data/SKU FROZEN FOODS.csv',
+        'Biscuits': 'data/SKU BISCUITS.csv',
+        'RTE': 'data/SKU RTE.csv',
+        'Chips': 'data/SKU CHIPS.csv'
     }
 
     # === Step 2: Dictionary to track category presence per brand ===

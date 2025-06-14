@@ -8,7 +8,7 @@ router = APIRouter()
 async def execute_kpi_gifting():
     try:
         # Fixed CSV path — update to your actual file location
-        csv_path = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI15.csv"
+        csv_path = "PhysicalKPICSV/KPI15.csv"
 
         # Read CSV file
         df = pd.read_csv(csv_path)

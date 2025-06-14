@@ -5,7 +5,7 @@ from io import BytesIO
 import matplotlib
 matplotlib.use('Agg')  # Non-GUI backend
 
-def get_brand_personality_radar(excel_path: str = "H_adv_analysis_data\kpi 7.xlsx", 
+def get_brand_personality_radar(excel_path: str = "H_adv_analysis_data/kpi 7.xlsx", 
                               sheet_name: str = 'Sheet1') -> bytes:
     """
     Generate brand personality radar chart from Excel file

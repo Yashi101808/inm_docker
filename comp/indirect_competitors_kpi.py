@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_indirect_competitor_kpi():
     # 1. Read the competitor CSV (make sure the path is correct)
-    file_path = r'data\indirect competitors.csv'  # Update if needed
+    file_path = 'data/indirect competitors.csv'  # Update if needed
     df = pd.read_csv(file_path)
 
     # 2. Check the column names to ensure they match

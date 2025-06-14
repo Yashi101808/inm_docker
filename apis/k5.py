@@ -26,7 +26,7 @@ def convert_np_types(obj):
 
 def run_kpi(params):
     try:
-        file_path = params.get("file_path", "data/KPI-5.csv")
+        file_path = params.get("file_path", "Market_data/KPI-5.csv")
         df = pd.read_csv(file_path, skiprows=3)
         df.columns = ['Sr. No.', 'Date', 'Regulatory Change', 'Category', 'Impact Area', 'News Frequency', 'Platform Link']
         df['Date'] = pd.to_datetime(df['Date'], errors='coerce')

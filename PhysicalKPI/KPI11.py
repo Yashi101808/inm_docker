@@ -5,7 +5,7 @@ import pandas as pd
 router = APIRouter()
 
 # ✅ Path to the KPI 11 file
-FILE_PATH = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI11.csv"
+FILE_PATH = "PhysicalKPICSV/KPI11.csv"
 
 @router.get("/kpi11-sentiment-summary")
 async def sentiment_summary():

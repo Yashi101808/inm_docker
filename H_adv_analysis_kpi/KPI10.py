@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-KPI10_FILE_PATH = "H_adv_analysis_data\KPI 10.xlsx"
+KPI10_FILE_PATH = "H_adv_analysis_data/KPI 10.xlsx"
 
 def get_comparison_sheet_sections():
     # Load the sheet

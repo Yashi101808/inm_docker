@@ -4,7 +4,7 @@ from io import BytesIO
 
 def generate_range_depth_plot():
     # === Step 1: Load your dataset ===
-    file_path = r'data\Range Depth .csv'  # Update if your file name/path is different
+    file_path = 'data/Range Depth .csv'  # Update if your file name/path is different
     df = pd.read_csv(file_path)
 
     # === Step 2: Set the brand column as the index for better plotting ===

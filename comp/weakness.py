@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_weaknesses_summary():
     # Step 1: Load the CSV file
-    file_path = "data\Competitor Perceived Weaknesses.csv"
+    file_path = "data/Competitor Perceived Weaknesses.csv"
     df_weaknesses = pd.read_csv(file_path)
 
     # Step 2: Clean the column names
@@ -27,7 +27,7 @@ def get_weaknesses_summary():
     print(weaknesses_summary)
 
     # Step 8: Save the summarized data to a new CSV
-    output_file_path = "data\Competitor_Perceived_Weaknesses_Summarized.csv"
+    output_file_path = "data/Competitor_Perceived_Weaknesses_Summarized.csv"
     weaknesses_summary.to_csv(output_file_path, index=False)
 
     print(f"Competitor perceived weaknesses summarized and saved to: {output_file_path}")

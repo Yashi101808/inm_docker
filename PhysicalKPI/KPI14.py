@@ -10,7 +10,7 @@ router = APIRouter()
 async def execute_kpi_loyalty():
     try:
         # Path to the actual CSV file
-        csv_path = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI14.csv"
+        csv_path = "PhysicalKPICSV/KPI14.csv"
 
         # Skip first 2 rows where metadata/header lies
         df = pd.read_csv(csv_path, skiprows=2)

@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_influencer_summary():
     # Step 1: Load the CSV file
-    file_path = "data\\use of influencers.csv"
+    file_path = "data/use of influencers.csv"
     df_influencers = pd.read_csv(file_path)
 
     # Step 2: Clean up column names (remove extra spaces)

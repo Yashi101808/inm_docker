@@ -40,7 +40,7 @@ def summarize_kpi_data(df):
 
 # ✅ This function is called by FastAPI
 def run_kpi(params):
-    file_path = params.get("file_path", r"Market_data\KPI-1.csv")  # default fallback
+    file_path = params.get("file_path", "Market_data/KPI-1.csv")  # default fallback
     df = extract_kpi_data(file_path)
     summary_df = summarize_kpi_data(df)
 

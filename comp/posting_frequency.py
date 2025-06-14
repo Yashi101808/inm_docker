@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Step 1: Read the CSV data into a DataFrame
-file_path = r"data\posting frequency.csv"  # Updated path to the correct file
+file_path = "data/posting frequency.csv"  # Updated path to the correct file
 df = pd.read_csv(file_path)
 
 # Step 2: Check the column names to ensure there are no hidden spaces or typos

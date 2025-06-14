@@ -4,7 +4,7 @@ from io import BytesIO
 
 def generate_seo_pa_plot():
     # Load the data
-    file_path = r"data\Competitor SEO Performance Indi.csv"
+    file_path = "data/Competitor SEO Performance Indi.csv"
     df = pd.read_csv(file_path)
 
     # Ensure Page Authority is numeric

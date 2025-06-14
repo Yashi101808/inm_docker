@@ -19,7 +19,7 @@ def get_sentiment(text: str) -> str:
 @router.get("/execute_kpi12/")
 async def analyze_kpi12_sentiment():
     try:
-        csv_path = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI12.csv"
+        csv_path = "PhysicalKPICSV/KPI12.csv"
         df = pd.read_csv(csv_path)
 
         # Rename first two columns just in case

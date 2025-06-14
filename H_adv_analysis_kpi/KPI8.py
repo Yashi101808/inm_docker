@@ -6,7 +6,7 @@ import matplotlib
 matplotlib.use('Agg')  # Non-GUI backend
 
 def get_kpi8_dashboard_chart_and_data(
-    excel_path: str = "H_adv_analysis_data\KPI 8.xlsx", 
+    excel_path: str = "H_adv_analysis_data/KPI 8.xlsx", 
     sheet_name: str = "Sheet3"
 ) -> tuple:
     """

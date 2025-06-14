@@ -5,7 +5,7 @@ from io import BytesIO
 
 def generate_major_online_heatmap():
     # Step 1: Read the CSV data into a DataFrame
-    file_path = r"data\Competitor Presence Score on Ma.csv"  # Replace with your actual path
+    file_path = "data/Competitor Presence Score on Ma.csv"  # Replace with your actual path
     df = pd.read_csv(file_path)
 
     # Step 2: Clean the data (if necessary, like fixing column names, handling missing values)

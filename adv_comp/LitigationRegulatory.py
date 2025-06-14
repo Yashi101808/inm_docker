@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import io
 
-def litigation_issue_data(csv_path: str = r"data\Competitor LitigationRegulatory.csv"):
+def litigation_issue_data(csv_path: str = "data/Competitor LitigationRegulatory.csv"):
     """
     Processes the litigation/regulatory issues CSV and returns the issue count per brand.
 

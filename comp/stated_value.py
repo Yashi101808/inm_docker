@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_stated_value_propositions():
     # Step 1: Load the CSV file
-    file_path = "data\\Competitor Stated Value Proposi.csv"
+    file_path = "data/Competitor Stated Value Proposi.csv"
     df_value_propositions = pd.read_csv(file_path)
 
     # Step 2: Inspect the data and clean up the columns if needed

@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-def get_kpi3_sheet1_campaign_timeline_chart(excel_path: str = "H_adv_analysis_data\KPI 3.xlsx", sheet_name: str = "Sheet1") -> bytes:
+def get_kpi3_sheet1_campaign_timeline_chart(excel_path: str = "H_adv_analysis_data/KPI 3.xlsx", sheet_name: str = "Sheet1") -> bytes:
     """
     Generate campaign timeline chart from KPI-3.xlsx Sheet1 and return as PNG bytes.
     Args:

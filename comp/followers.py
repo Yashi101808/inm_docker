@@ -17,7 +17,7 @@ def convert_to_number(value):
 # Function to generate the followers plot
 def generate_followers_plot():
     # Step 1: Read CSV and clean column names
-    file_path = r"data\Social Media.csv"
+    file_path = "data/Social Media.csv"
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
 
