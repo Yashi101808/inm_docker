@@ -6,7 +6,7 @@ app = FastAPI()
 router = APIRouter()
 
 # ✅ Define file path
-FILE_PATH = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI1.csv"
+FILE_PATH = "PhysicalKPICSV/KPI1.csv"
 
 @router.get("/rising-search-queries")
 async def get_rising_queries():

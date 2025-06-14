@@ -8,7 +8,7 @@ router = APIRouter()
 async def execute_kpi13():
     try:
         # Fixed path to your KPI13 CSV file on server
-        csv_path = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/KPI13.csv"  # Change this path to your actual file location
+        csv_path = "PhysicalKPICSV/KPI13.csv"  # Change this path to your actual file location
         
         # Read CSV
         df = pd.read_csv(csv_path)

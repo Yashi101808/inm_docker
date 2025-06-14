@@ -17,7 +17,7 @@ def analyze_review_themes():
     """
     try:
         # 🔗 Hardcoded CSV path (update this for production)
-        KPI65_PATH = r'SWOTdata/KPI 65 - Sheet1.csv'
+        KPI65_PATH = 'SWOTdata/KPI 65 - Sheet1.csv'
 
         # ✅ Load and process the CSV
         df = pd.read_csv(KPI65_PATH).dropna()
@@ -84,8 +84,8 @@ def analyze_social_media_metrics():
     """
     try:
         # 📁 Hardcoded file paths (update if needed)
-        engagement_path = r'SWOTdata\KPI50 - Sheet1.csv'
-        bounce_path = r'SWOTdata\KPI28 - Sheet1.csv'
+        engagement_path = 'SWOTdata/KPI50 - Sheet1.csv'
+        bounce_path = 'SWOTdata/KPI28 - Sheet1.csv'
 
         # ✅ Load and process engagement data
         engagement = pd.read_csv(engagement_path, skiprows=1).dropna().reset_index(drop=True)
@@ -169,8 +169,8 @@ def analyze_website_issues():
     """
     try:
         # 📁 File paths for KPI58 and KPI59
-        KPI59_PATH = r'SWOTdata\KPI59 - Sheet1.csv'  # PageSpeed
-        KPI58_PATH = r'SWOTdata\KPI58 - Sheet1.csv'  # Mobile
+        KPI59_PATH = 'SWOTdata/KPI59 - Sheet1.csv'  # PageSpeed
+        KPI58_PATH = 'SWOTdata/KPI58 - Sheet1.csv'  # Mobile
 
         # ✅ Load PageSpeed data (skiprows=2 to skip headers)
         pagespeed = pd.read_csv(KPI59_PATH, skiprows=2).dropna()
@@ -258,7 +258,7 @@ def analyze_website_issues():
 
 #Weakness - 4. Gaps in Online Customer Service Response
 sns.set(style="whitegrid")
-KPI66 = r"SWOTdata\KPI66 - Haldiram Response Rate.csv"
+KPI66 = "SWOTdata/KPI66 - Haldiram Response Rate.csv"
 
 async def analyze_response_rates():
     """
@@ -336,7 +336,7 @@ async def analyze_response_rates():
 
 
 # Weakness - 5. Negative News Sentiment Spikes 
-KPI61 = r"SWOTdata\KPI61 - Sheet1.csv"
+KPI61 = "SWOTdata/KPI61 - Sheet1.csv"
 async def news_sentiment_spikes():
     """
     Endpoint to perform sentiment analysis on news data.
@@ -422,8 +422,8 @@ async def news_sentiment_spikes():
         )
     
 #Strengths KPI - 1. High Brand Search Volume Rank
-KPI41_PATH = r"SWOTdata\KPI41 - Sheet1.csv"
-KPI42_PATH = r"SWOTdata\KPI42 - Sheet1.csv"
+KPI41_PATH = "SWOTdata/KPI41 - Sheet1.csv"
+KPI42_PATH = "SWOTdata/KPI42 - Sheet1.csv"
 async def search_volume_rank():
     """
     Endpoint to perform brand awareness analysis.
@@ -563,7 +563,7 @@ async def search_volume_rank():
         )
     
 #Strengths KPI - 2. Overall Positive Sentiment Score
-KPI45_PATH = r"SWOTdata\KPI45 - Sheet1.csv"
+KPI45_PATH = "SWOTdata/KPI45 - Sheet1.csv"
 
 async def analyze_sentiment_score():
     """
@@ -655,9 +655,9 @@ async def analyze_sentiment_score():
         return JSONResponse(status_code=400, content={"message": f"Error processing data: {str(e)}"})
     
 # Strengths KPI - 3. Wide Product Range Visibility
-KPI20_PATH = r"SWOTdata\KPI20 - Sheet1.csv"
-KPI21_PATH = r"SWOTdata\KPI21 - Sheet1.csv"
-KPI68_PATH = r"SWOTdata\KPI68 - Sheet1.csv"
+KPI20_PATH = "SWOTdata/KPI20 - Sheet1.csv"
+KPI21_PATH = "SWOTdata/KPI21 - Sheet1.csv"
+KPI68_PATH = "SWOTdata/KPI68 - Sheet1.csv"
 
 async def product_range_visibility():
     """
@@ -751,8 +751,8 @@ async def product_range_visibility():
 
 
 # Strengths KPI - 4. Strong E-commerce Presence/Ratings
-KPI24_PATH = r'SWOTdata\KPI24 - Sheet1.csv'
-KPI63_PATH = r'SWOTdata\KPI63 - Sheet1.csv'
+KPI24_PATH = 'SWOTdata/KPI24 - Sheet1.csv'
+KPI63_PATH = 'SWOTdata/KPI63 - Sheet1.csv'
 
 async def analyze_ecommerce_presence():
     """
@@ -850,7 +850,7 @@ async def analyze_ecommerce_presence():
     except Exception as e:
         return JSONResponse(status_code=400, content={"message": f"Error processing data: {str(e)}"})
 # Strengths KPI - 5. High Review Volume
-KPI62_PATH = r"C:\Users\okarp\Downloads\KPI62 - Haldiram Online Review Volume.csv"
+KPI62_PATH = "SWOTdata/KPI62 - Haldiram Online Review Volume.csv"
 
 async def high_review_volume():
     try:
@@ -964,7 +964,7 @@ async def high_review_volume():
 
 
 #Opportunitites KPI - 1. High Growth Rate in Adjacent Categories
-KPI2_PATH = r"SWOTdata\KPI2 - Sheet1.csv"
+KPI2_PATH = "SWOTdata/KPI2 - Sheet1.csv"
 
 async def analyze_high_growth_adjacent_categories():
     """
@@ -1088,9 +1088,9 @@ async def analyze_high_growth_adjacent_categories():
         return JSONResponse(status_code=400, content={"message": f"Error processing data: {str(e)}"})
     
 # Opportunities KPI - 2. Rising Trend Alignment (e.g., Health, Sustainability)
-KPI4_PATH = r"SWOTdata\KPI - KPI-4.csv"
-KPI10_PATH = r"SWOTdata\KPI - KPI-10.csv"
-KPI11_PATH = r"SWOTdata\KPI - KPI-11.csv"
+KPI4_PATH = "SWOTdata/KPI - KPI-4.csv"
+KPI10_PATH = "SWOTdata/KPI - KPI-10.csv"
+KPI11_PATH = "SWOTdata/KPI - KPI-11.csv"
 async def analyze_trend_alignment():
     """
     Analyze rising trend alignment based on KPIs 4, 10, and 11.
@@ -1253,7 +1253,7 @@ async def analyze_trend_alignment():
         return JSONResponse(status_code=400, content={"message": f"Error processing data: {str(e)}"})
 
 # Opportunities KPI - 3. Unmet Needs Identified in Reviews
-KPI78_PATH = r"SWOTdata\KPI78.csv"
+KPI78_PATH = "SWOTdata/KPI78.csv"
 
 async def analyze_unmet_needs():
     """
@@ -1428,7 +1428,7 @@ async def analyze_unmet_needs():
             content={"message": f"Error processing data: {str(e)}"}
         )
 # Opportunities KPI - 4. Competitor Weaknesses Identified
-FILE_PATH = r"SWOTdata\KPI40 - KPI40.csv"
+FILE_PATH = "SWOTdata/KPI40 - KPI40.csv"
 
 async def analyze_competitor_weaknesses():
     """
@@ -1577,6 +1577,7 @@ async def analyze_competitor_weaknesses():
         # Create KPI Table and recommendations
         if not category_scores.empty:
             kpi_table = pd.DataFrame({
+
                 'Competitor': category_scores.index,
                 'Total Opportunity Score': category_scores['Total Opportunity'],
                 'Primary Weaknesses': category_scores.idxmax(axis=1),
@@ -1639,9 +1640,8 @@ async def analyze_competitor_weaknesses():
 # Opportunities KPI - 5. Untapped Geographic Search Interest
 def geographic_search_opportunity():
     try:
-        # Hardcoded file paths (update these to actual production paths)
-        kpi13_path = r'SWOTdata\KPI13 - KPI-13.csv'
-        kpi71_path = r'SWOTdata\KPI 71 - Sheet1.csv'
+        kpi13_path = 'SWOTdata/KPI13 - KPI-13.csv'
+        kpi71_path = 'SWOTdata/KPI 71 - Sheet1.csv'
 
         # Load data
         kpi13 = pd.read_csv(kpi13_path)

@@ -6,8 +6,8 @@ app = FastAPI()
 router = APIRouter()
 
 # ✅ File paths
-INSTAGRAM_FILE = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/Instagram.csv"
-TWITTER_FILE = "Indian-Namkeen-Market-SWOT-Analysis-main/PhysicalKPICSV/Twitter.csv"
+INSTAGRAM_FILE = "PhysicalKPICSV/Instagram.csv"
+TWITTER_FILE = "PhysicalKPICSV/Twitter.csv"
 
 # ✅ Keyword lists
 indian_metros = ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune']
