@@ -454,7 +454,7 @@ def get_posting_frequency_table():
     img_bytes = generate_posting_frequency_table()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C10-Haldiram Social Media Engagement Rate ")
+@app.get("/C10-Haldiram Social Media Engagement Rate")
 def get_engagement_rate_plot():
     img_bytes = generate_engagement_rate_plot()
     return Response(content=img_bytes, media_type="image/png")
@@ -464,36 +464,36 @@ def get_content_themes_plot():
     img_bytes = generate_content_themes_plot()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C12-Haldiram Website Traffic Estimate Rank ")
+@app.get("/C12-Haldiram Website Traffic Estimate Rank")
 def get_traffic_estimate_table():
     img_bytes = generate_traffic_estimate_table()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C13-Haldiram Estimated Website Bounce Rate ")
+@app.get("/C13-Haldiram Estimated Website Bounce Rate")
 def get_bounce_rate_table():
     img_bytes = generate_bounce_rate_table()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C14-Haldiram Estimated Website Avg. Visit Duration ")
+@app.get("/C14-Haldiram Estimated Website Avg. Visit Duration")
 def get_avg_visit_duration_table():
     img_bytes = generate_avg_visit_duration_table()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C15-Haldiram Website Top Traffic Sources ")
+@app.get("/C15-Haldiram Website Top Traffic Sources")
 def get_traffic_sources_pie():
     img_bytes = generate_traffic_sources_pie()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C16-Haldiram Website SEO Performance Indicator ")
+@app.get("/C16-Haldiram Website SEO Performance Indicator")
 def get_seo_performance_plot():
     img_bytes = generate_seo_performance_plot()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C17-Haldiram Top Organic Keywords Visibility ")
+@app.get("/C17-Haldiram Top Organic Keywords Visibility")
 def top_organic_keywords():
     return get_top_organic_keywords()
 
-@app.get("/C19-Haldiram Website Page Load Speed Score ")
+@app.get("/C19-Haldiram Website Page Load Speed Score")
 def get_page_speed_table():
     img_bytes = generate_page_speed_table()
     return Response(content=img_bytes, media_type="image/png")
@@ -503,17 +503,17 @@ def get_news_mention_frequency_plot():
     img_bytes = generate_news_mention_frequency_plot()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C21-Haldiram News Sentiment ")
+@app.get("/C21-Haldiram News Sentiment")
 def get_news_sentiment_pie():
     img_bytes = generate_news_sentiment_pie()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C22-Haldiram Online Review Volume ")
+@app.get("/C22-Haldiram Online Review Volume")
 def get_total_reviews_table():
     img_bytes = generate_total_reviews_table()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C23-Haldiram Average Online Rating ")
+@app.get("/C23-Haldiram Average Online Rating")
 def get_platform_ratings_bar():
     img_bytes = generate_platform_ratings_bar()
     return Response(content=img_bytes, media_type="image/png")
@@ -528,7 +528,7 @@ def get_negative_reviews_bar():
     img_bytes = generate_negative_reviews_bar()
     return Response(content=img_bytes, media_type="image/png")
 
-@app.get("/C26-Haldiram Online Customer Service Response Rate ")
+@app.get("/C26-Haldiram Online Customer Service Response Rate")
 def get_response_rate_table():
     img_bytes = generate_response_rate_table()
     return Response(content=img_bytes, media_type="image/png")
@@ -639,7 +639,7 @@ def get_switch_trigger_chart():
     chart_path = generate_switch_trigger_chart()
     return FileResponse(chart_path, media_type="image/png")
 
-@app.get("/I-2_Platform_Role_in_Purchase_Funnel ")
+@app.get("/I-2_Platform_Role_in_Purchase_Funnel")
 def platform_funnel_kpi_chart():
     return get_platform_funnel_kpi_chart()
 

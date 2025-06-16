@@ -7,7 +7,7 @@ import matplotlib
 matplotlib.use('Agg')  # Use Agg backend for non-GUI rendering
 
 
-def get_basket_composition_chart(csv_path: str = "KPI_Data/basket_composition.csv") -> bytes:
+def get_basket_composition_chart(csv_path: str = "KPI_Data/Basket_Composition.csv") -> bytes:
     df = pd.read_csv(csv_path)
 
     pair_counts = Counter()

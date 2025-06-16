@@ -7,11 +7,14 @@ def generate_seo_da_plot():
     file_path = "data/Competitor SEO Performance Indi.csv"
     df = pd.read_csv(file_path)
 
-    # Ensure Domain Authority is numeric
-    df['Domain Authority (DA)'] = pd.to_numeric(df['Domain Authority (DA)'], errors='coerce')
+    # Drop rows where Brand or Domain Authority (DA) is missing
+    df = df.dropna(subset=['Brand', 'Domain Authority (DA)'])
+
+    # (Optional) Convert Brand to string, just in case
+    df['Brand'] = df['Brand'].astype(str)
 
     # Sort data by Domain Authority
-    df_sorted = df.sort_values('Domain Authority (DA)', ascending=False)
+    df_sorted = df.sort_values('Domain Authority (DA)', ascending=True)
 
     # Plot
     plt.figure(figsize=(10, 6))

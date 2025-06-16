@@ -10,6 +10,12 @@ def generate_seo_pa_plot():
     # Ensure Page Authority is numeric
     df['PA'] = pd.to_numeric(df['PA'], errors='coerce')
 
+    # Drop rows where 'Brand' or 'Domain Authority (DA)' is NaN
+    df = df.dropna(subset=['Brand', 'Domain Authority (DA)'])
+
+    # Convert 'Brand' to string type
+    df['Brand'] = df['Brand'].astype(str)
+
     # Sort data by Page Authority
     df_sorted = df.sort_values('PA', ascending=False)
 
