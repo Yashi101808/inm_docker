@@ -958,8 +958,8 @@ def brand_resilience_score():
 
 # Section D : consumer insights
 from fastapi import FastAPI
-from PhysicalKPI import (
-    KPI1, KPI2, KPI3, KPI4, KPI5, KPI6, KPI7, KPI8,
+from C_Physical_KPI import (
+    KPI1,KPI2, KPI3, KPI4, KPI5, KPI6, KPI7, KPI8,
     KPI9, KPI10, KPI11, KPI12, KPI13, KPI14, KPI15
 )
 
