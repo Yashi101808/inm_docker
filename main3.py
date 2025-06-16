@@ -774,6 +774,13 @@ def kpi3_sheet2_chart():
         return {"message": "No data available to plot"}
     return Response(content=img_bytes, media_type="image/png")
 
+@app.get("/H4-doc-file")
+def serve_docx():
+    response = get_docx_file_response()
+    if response is None:
+        raise HTTPException(status_code=404, detail="File not found")
+    return response
+
 @app.get("/H5-chart")
 def kpi5_chart():
     img_bytes = get_kpi5_chart()
@@ -926,12 +933,21 @@ def category_pie_chart_kpi():
         return {"message": "No data available to plot"}
     return Response(content=img_bytes, media_type="image/png")
 
+
 @app.get("/H24-qualitative-assessment")
 def get_kpi24_qualitative_assessment():
     results = get_kpi24_qualitative_assessment_details()
     if not results:
-        raise HTTPException(status_code=404, detail="No qualitative assessment details found")
-    return {"status": "success", "results": results, "count": len(results)}
+        raise HTTPException(
+            status_code=404,
+            detail="No qualitative assessment details found in Sheet3 of KPI-24.xlsx",
+            headers={"X-Error": "QUALITATIVE_ASSESSMENT_MISSING"}
+        )
+    return {
+        "status": "success",
+        "results": results,
+        "count": len(results)
+    }
 
 @app.get("/H25-brand-resilience-score")
 def brand_resilience_score():
