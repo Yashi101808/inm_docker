@@ -6,7 +6,7 @@ def get_kpi24_sheet3_data():
     Reads and processes Sheet3 from KPI-24.xlsx, removes all rows with NaN or infinite values,
     and returns only fully valid, readable rows for JSON compliance.
     """
-    file_path = r("H_adv_analysis_data\KPI 24.xlsx")
+    file_path = r"H_adv_analysis_data\KPI 24.xlsx"
     df = pd.read_excel(file_path, sheet_name="Sheet3")
     # Replace inf/-inf with NaN
     df = df.replace([np.inf, -np.inf], np.nan)
