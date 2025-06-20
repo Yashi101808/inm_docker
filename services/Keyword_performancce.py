@@ -1,10 +1,18 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
+from pathlib import Path
+
+app = FastAPI()
 
 def generate_high_intent_keyword_trend_chart(csv_path):
-    df = pd.read_csv(csv_path)
-    # Aggregate total search volume by keyword
+    csv_file = Path(csv_path)
+    if not csv_file.exists():
+        raise HTTPException(status_code=404, detail=f"CSV file not found: {csv_file}")
+
+    df = pd.read_csv(csv_file)
     keyword_totals = df.groupby('Keyword')['Search Volume'].sum().sort_values(ascending=False)
 
     plt.figure(figsize=(10,6))
@@ -19,4 +27,4 @@ def generate_high_intent_keyword_trend_chart(csv_path):
     plt.savefig(buf, format='png')
     plt.close()
     buf.seek(0)
-    return buf.getvalue()
+    return buf

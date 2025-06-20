@@ -1,17 +1,23 @@
+# services/information_overload.py
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
+import io
+from fastapi.responses import StreamingResponse
+from pathlib import Path
+from fastapi import HTTPException
 
 def generate_information_overload_chart():
-    # Load CSV
-    file_path = "KPI_data/Feedback_for_variety.csv"
-    df = pd.read_csv(file_path)
+    csv_path = Path("KPI_data") / "Feedback_for_variety.csv"
+    if not csv_path.exists():
+        raise HTTPException(status_code=404, detail=f"CSV file not found at: {csv_path}")
 
-    # Count occurrences of each confusion type
+    df = pd.read_csv(csv_path)
+    if 'Confusion Type' not in df.columns:
+        raise HTTPException(status_code=400, detail="Column 'Confusion Type' not found in CSV")
+
     confusion_counts = df['Confusion Type'].value_counts()
 
-    # Plot
     plt.figure(figsize=(12, 6))
     bars = plt.bar(confusion_counts.index, confusion_counts.values, color='skyblue')
     plt.title("Information Overload / Simplicity Desire - Confusion Types")
@@ -20,10 +26,9 @@ def generate_information_overload_chart():
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
-    # Save as PNG
-    output_path = "output/information_overload_chart.png"
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    plt.savefig(output_path)
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
     plt.close()
+    buf.seek(0)
 
-    return output_path
+    return StreamingResponse(buf, media_type='image/png')

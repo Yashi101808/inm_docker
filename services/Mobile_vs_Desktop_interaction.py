@@ -1,48 +1,60 @@
+# services/kpi_mobile_desktop.py
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import io
-
-CSV_FILE_PATH = "KPI_Data/Mobile_vs_Desktop_Interaction.csv"
+from pathlib import Path
+from fastapi.responses import StreamingResponse
+from fastapi import HTTPException
 
 def generate_mobile_desktop_bar_chart():
-    # Read the CSV
-    df = pd.read_csv(CSV_FILE_PATH)
+    try:
+        csv_path = Path("KPI_Data") / "Mobile_vs_Desktop_Interaction.csv"
 
-    # We extract "Page Load Speed" row for numeric scores
-    # (You can extend this by adding numeric columns for other KPIs if needed)
-    pload = df[df['KPI'] == "Page Load Speed (KPI 59)"].iloc[0]
+        # Check if CSV exists
+        if not csv_path.exists():
+            raise FileNotFoundError(f"CSV file not found at: {csv_path}")
 
-    # Extract numeric scores from text manually (since they are embedded in text)
-    # "Mobile load speed score: 75/100 (average)"
-    mobile_score_text = pload['Mobile Interaction']
-    desktop_score_text = pload['Desktop Interaction']
+        df = pd.read_csv(csv_path)
 
-    mobile_score = int(mobile_score_text.split(':')[1].strip().split('/')[0])
-    desktop_score = int(desktop_score_text.split(':')[1].strip().split('/')[0])
+        # Extract "Page Load Speed" row
+        match = df[df['KPI'] == "Page Load Speed (KPI 59)"]
+        if match.empty:
+            raise ValueError("Row with KPI 'Page Load Speed (KPI 59)' not found.")
 
-    # Plot
-    labels = ['Page Load Speed']
-    mobile_scores = [mobile_score]
-    desktop_scores = [desktop_score]
+        pload = match.iloc[0]
+        mobile_score_text = pload['Mobile Interaction']
+        desktop_score_text = pload['Desktop Interaction']
 
-    x = range(len(labels))
-    width = 0.35
+        # Parse score
+        mobile_score = int(mobile_score_text.split(':')[1].strip().split('/')[0])
+        desktop_score = int(desktop_score_text.split(':')[1].strip().split('/')[0])
 
-    fig, ax = plt.subplots(figsize=(6,4))
-    ax.bar(x, mobile_scores, width, label='Mobile')
-    ax.bar([i + width for i in x], desktop_scores, width, label='Desktop')
+        # Plotting
+        labels = ['Page Load Speed']
+        x = range(len(labels))
+        width = 0.35
 
-    ax.set_ylabel('Score (out of 100)')
-    ax.set_title('Mobile vs Desktop Page Load Speed')
-    ax.set_xticks([i + width/2 for i in x])
-    ax.set_xticklabels(labels)
-    ax.legend()
+        fig, ax = plt.subplots(figsize=(6,4))
+        ax.bar(x, [mobile_score], width, label='Mobile')
+        ax.bar([i + width for i in x], [desktop_score], width, label='Desktop')
 
-    plt.tight_layout()
+        ax.set_ylabel('Score (out of 100)')
+        ax.set_title('Mobile vs Desktop Page Load Speed')
+        ax.set_xticks([i + width/2 for i in x])
+        ax.set_xticklabels(labels)
+        ax.legend()
+        plt.tight_layout()
 
-    # Save to buffer
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    plt.close(fig)
-    buf.seek(0)
-    return buf
+        # Save to buffer and return
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        plt.close(fig)
+        buf.seek(0)
+
+        return StreamingResponse(buf, media_type="image/png")
+
+    except FileNotFoundError as fe:
+        raise HTTPException(status_code=404, detail=str(fe))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")

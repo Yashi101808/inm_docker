@@ -1,36 +1,43 @@
-# kpi_community_engagement.py
+# services/kpi_community_engagement.py
 
-from fastapi import FastAPI, Response
+from fastapi import Response, HTTPException
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
+from pathlib import Path
 
-app = FastAPI()
-
-@app.get("/kpi/community-engagement", tags=["KPI"])
 def community_engagement_chart():
-    # Read CSV
-    df = pd.read_csv("KPI_data/community_engagement.csv")
-    df.fillna("None", inplace=True)
+    try:
+        # Paths
+        csv_path = Path("KPI_data") / "community_engagement.csv"
+        chart_dir = Path("static") / "charts"
+        chart_path = chart_dir / "community_engagement.png"
 
-    # Group by Platform
-    grouped = df.groupby("Platform").size().sort_values(ascending=False)
+        # Check if CSV exists
+        if not csv_path.exists():
+            raise FileNotFoundError(f"CSV file not found at: {csv_path}")
 
-    # Plot chart
-    plt.figure(figsize=(10, 6))
-    grouped.plot(kind="bar", color="orange")
-    plt.title("Community Engagement by Platform")
-    plt.xlabel("Platform")
-    plt.ylabel("Number of Groups")
-    plt.xticks(rotation=45, ha="right")
-    plt.tight_layout()
+        # Read and process data
+        df = pd.read_csv(csv_path)
+        df.fillna("None", inplace=True)
+        grouped = df.groupby("Platform").size().sort_values(ascending=False)
 
-    # Save PNG
-    os.makedirs("static/charts", exist_ok=True)
-    chart_path = "static/charts/community_engagement.png"
-    plt.savefig(chart_path)
-    plt.close()
+        # Plot chart
+        plt.figure(figsize=(10, 6))
+        grouped.plot(kind="bar", color="orange")
+        plt.title("Community Engagement by Platform")
+        plt.xlabel("Platform")
+        plt.ylabel("Number of Groups")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
 
-    # Return PNG
-    with open(chart_path, "rb") as f:
-        return Response(content=f.read(), media_type="image/png")
+        # Save chart
+        chart_dir.mkdir(parents=True, exist_ok=True)
+        plt.savefig(chart_path)
+        plt.close()
+
+        return Response(content=chart_path.read_bytes(), media_type="image/png")
+
+    except FileNotFoundError as fe:
+        raise HTTPException(status_code=404, detail=str(fe))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")

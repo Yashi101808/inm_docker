@@ -558,7 +558,7 @@ from services.Trust_Analysis import generate_trust_analysis_plot
 from services.Search_Behaviour_Evolution import generate_search_behavior_evolution_chart
 from services.Community_Engagement import community_engagement_chart
 from services.User_Segmentation_Proxy import user_segmentation_proxy
-from services.Post_Purchase_Dissonance import PostPurchaseDissonance
+from services.Post_Purchase_Dissonance import get_post_purchase_dissonance_chart
 from services.Subscription_Intrest_Level import generate_subscription_pie_chart
 from services.Mobile_vs_Desktop_interaction import generate_mobile_desktop_bar_chart
 from services.Keyword_performancce import generate_high_intent_keyword_trend_chart
@@ -571,155 +571,123 @@ from services.health_awareness_spectrum import get_health_awareness_chart
 from services.Recipe_Integration import get_recipe_usage_figure_bytes
 from services.Homemade_vs_local import create_chart_image
 from services.Impulse_purchase import generate_impulse_kpi_chart
-from services.Unboxing_review import get_chart_response
+from services.Unboxing_review import get_unboxing_sentiment_chart
 from services.Digital_Payment import generate_payment_issues_chart
 from services.Gift_card_mention import create_user_type_pie_chart 
 from services.food_hack import generate_hacktype_bar_chart
 from services.cultural_discussion import generate_contextual_indicators_chart
 from services.Variety_information import generate_information_overload_chart
-from services.online_influence import load_and_process_data, plot_kpi_bar_chart
+from services.online_influence import generate_influence_chart
 from services.Price_increase_reactions import load_reactions, create_pie_chart
 
-ppd = PostPurchaseDissonance()
-
-@app.get("/I-10_basket-composition-clues")
-def basket_composition_kpi():
-    img_bytes = get_basket_composition_chart()
-    if not img_bytes:
-        return {"message": "No data available to plot"}
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I10/basket-composition", response_class=StreamingResponse)
+def basket_chart():
+    return get_basket_composition_chart()
 
 @app.get("/I-11_Influence-Attribution-Guesses")
 def influence_platform_mentions():
     img_buf = generate_mentions_by_platform_image()
     return StreamingResponse(img_buf, media_type="image/png")
 
-@app.get("/I-28_search-behavior-evolution")
-def get_search_behavior_evolution():
-    img_bytes = generate_search_behavior_evolution_chart()
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I28/search-behavior", response_class=StreamingResponse)
+def search_behavior_chart():
+    return generate_search_behavior_evolution_chart()
 
-CSV_FILE_PATH = "KPI_Data/Trust_Analysis.csv"
-@app.get("/I-27_Trust-Indicator-Analysis", response_class=Response)
-async def trust_analysis():
-    img_bytes = generate_trust_analysis_plot(CSV_FILE_PATH)
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I27/trust-analysis", response_class=StreamingResponse)
+def trust_analysis_chart():
+    return generate_trust_analysis_plot()
 
-@app.get("/I-26_Post-Purchase-Dissonance-Signals")
-def get_dissonance_chart():
-    img = ppd.generate_dissonance_chart()
-    return Response(content=img, media_type="image/png")
+@app.get("/I26/post-purchase-dissonance", response_class=StreamingResponse)
+def post_purchase_dissonance_chart():
+    return get_post_purchase_dissonance_chart()
 
-@app.get("/I-8_Community-Engagement-Level")
-def show_chart():
+@app.get("/I8/community-engagement", response_class=Response)
+def get_community_engagement_chart():
     return community_engagement_chart()
 
-@app.get("/I-7_User-Segmentation-Proxy", response_class=Response)
-def segmentation_chart():
+@app.get("/I7/user_segmentation", response_class=Response)
+def get_user_segmentation_chart():
     return user_segmentation_proxy()
 
-@app.get("/I-13_Subscription_Interest_Signals")
-def subscription_interest_pie_chart():
-    img_bytes = generate_subscription_pie_chart()
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I13/subscription-interest", response_class=StreamingResponse)
+def get_subscription_interest_chart():
+    return generate_subscription_pie_chart()
 
-@app.get("/I-6_mobile-desktop-interaction")
-def mobile_desktop_interaction():
-    img_buf = generate_mobile_desktop_bar_chart()
-    return StreamingResponse(img_buf, media_type="image/png")
+@app.get("/I6/mobile-vs-desktop", response_class=StreamingResponse)
+def get_mobile_desktop_chart():
+    return generate_mobile_desktop_bar_chart()
 
-@app.get("/I-4_high-intent-keyword-trends")
-def get_high_intent_keyword_trends():
-    csv_path = 'KPI_Data/Keyword_Performance.csv'
-    image_bytes = generate_high_intent_keyword_trend_chart(csv_path)
-    return Response(content=image_bytes, media_type="image/png")
+@app.get("/I4/high-intent-keyword-trend")
+def high_intent_keyword_trend():
+    buf = generate_high_intent_keyword_trend_chart("KPI_Data/Keyword_Performance.csv")
+    return StreamingResponse(buf, media_type="image/png")
 
-@app.get("/I-3_Brand_switching_triggers")
+@app.get("/I3/brand-switching", response_class=FileResponse)
 def get_switch_trigger_chart():
-    chart_path = generate_switch_trigger_chart()
-    return FileResponse(chart_path, media_type="image/png")
+    return generate_switch_trigger_chart()
 
-@app.get("/I-2_Platform_Role_in_Purchase_Funnel")
-def platform_funnel_kpi_chart():
+@app.get("/I2/platform_funnel", response_class=FileResponse)
+def platform_funnel_chart():
     return get_platform_funnel_kpi_chart()
 
-@app.get("/I-9_Purchase-Frequency-Indicators")
-def get_purchase_frequency_image():
-    generate_purchase_frequency_chart()
-    return FileResponse("purchase_frequency_mentions.png", media_type="image/png")
+@app.get("/I9/purchase-frequency", response_class=FileResponse)
+def get_purchase_frequency_chart():
+    return generate_purchase_frequency_chart()
 
-CSV_PATH = "KPI_Data/Return_refund_issues.csv"
-@app.get("/I-12_Return_refund_issues")
+@app.get("/I12/Return-issue-type", response_class=StreamingResponse)
 def issue_type_chart():
-    img_bytes = generate_issue_type_chart(CSV_PATH)
-    return Response(content=img_bytes, media_type="image/png")
+    return generate_issue_type_chart()
 
-CSV_FILE = "KPI_data/Generation_wise_Consumption.csv"  # Adjust path as needed
-@app.get("/I-15_cross-generation-usage")
-def cross_generation_usage_kpi():
-    img = generate_cross_generation_chart(CSV_FILE)
-    return Response(content=img.read(), media_type="image/png")
+@app.get("/I15/cross-generation", response_class=StreamingResponse)
+def get_cross_generation_chart():
+    return generate_cross_generation_chart()
 
-@app.get("/I-16_Health_Consciousness_Spectrum")
-def health_awareness_endpoint():
+@app.get("/I16/health-awareness", response_class=StreamingResponse)
+def health_awareness_chart():
     return get_health_awareness_chart()
 
-@app.get("/I-17_Recipe_Usage/Integration_Mentions")
-def recipe_usage_png():
-    csv_path = "KPI_Data/Recipe_Integration_Mentions.csv"
-    img_bytes = get_recipe_usage_figure_bytes(csv_path)
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I17/recipe-usage")
+def recipe_usage_chart():
+    img_bytes = get_recipe_usage_figure_bytes("KPI_Data/recipe_integration_mentions.csv")
+    return StreamingResponse(io.BytesIO(img_bytes), media_type="image/png")
 
-@app.get("/I-18_Comparison-with-Homemade/Local-Alternatives")
-def get_chart():
-    img_bytes = create_chart_image()
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I18/homemade-vs-local", response_class=StreamingResponse)
+def get_homemade_vs_local_chart():
+    return create_chart_image()
 
-@app.get("/I-19_Impulse_Purchase_Indicators")
-def impulse_kpi():
-    img_bytes = generate_impulse_kpi_chart()
-    return Response(content=img_bytes, media_type="image/png")
+@app.get("/I19/impulse-chart", response_class=StreamingResponse)
+def get_impulse_kpi_chart():
+    return generate_impulse_kpi_chart()
 
-@app.get("/I-20_Unboxing_Experience_Mentions")
-async def chart_png():
-    return get_chart_response()
+@app.get("/I20/unboxing-sentiment", response_class=StreamingResponse)
+def get_unboxing_chart():
+    return get_unboxing_sentiment_chart()
 
-@app.get("/I-21_Digital_Payment_Preference/Issues")
+@app.get("/I21/payment-issues", response_class=StreamingResponse)
 def payment_issues_chart():
-    png_bytes = generate_payment_issues_chart()
-    return Response(content=png_bytes, media_type="image/png")
+    return generate_payment_issues_chart()
 
-@app.get("/I-22_Gift_Card/Voucher_Mentions")
-def user_types_pie_chart():
+@app.get("/I22/gift-card-user-type", response_class=StreamingResponse)
+def gift_card_user_type():
     return create_user_type_pie_chart()
 
-@app.get("/I-23_Food_Hack_Mentions")
-def get_hacktype_chart():
-    img_buf = generate_hacktype_bar_chart()
-    return Response(content=img_buf.read(), media_type="image/png")
+@app.get("/I23/hacktype-chart", response_class=StreamingResponse)
+def hacktype_chart():
+    return generate_hacktype_bar_chart()
 
-@app.get("/I-9_Purchase_Frequency_Indicators")
-async def get_contextual_indicators_chart():
-    return generate_contextual_indicators_chart()
+@app.get("/I25/information-overload", response_class=StreamingResponse)
+def information_overload_chart():
+    return generate_information_overload_chart()
 
-@app.get("/I-25_Information_Overload/Simplicity_Desire")
-def get_information_overload_chart():
-    image_path = generate_information_overload_chart()
-    return FileResponse(image_path, media_type="image/png")
+@app.get("/I29/influence-analysis", response_class=StreamingResponse)
+def influence_analysis():
+    return generate_influence_chart()
 
-CSV_PATH = "KPI_Data/online_influence.csv"  # Adjust path as needed
-@app.get("/I-29_Online-Community-Influence")
-def get_kpi_bar_chart():
-    summary_df = load_and_process_data(CSV_PATH)
-    img_buf = plot_kpi_bar_chart(summary_df)
-    return Response(content=img_buf.read(), media_type="image/png")
-
-CSV_PATH = "KPI_Data/Price_increase_reactions.csv" 
-@app.get("/I-30_Response-to-Price-Increase-Justificationt")
-def price_increase_sentiment_pie():
-    labels, sizes = load_reactions(CSV_PATH)
-    img_buf = create_pie_chart(labels, sizes)
-    return Response(content=img_buf.read(), media_type="image/png")
+@app.get("/I30/price-increase-sentiment")
+def price_increase_sentiment_chart():
+    labels, sizes = load_reactions("KPI_Data/price_increase_reactions.csv")
+    buf = create_pie_chart(labels, sizes)
+    return StreamingResponse(buf, media_type="image/png")
 
 # Section H : Advanced Haldiram Brand performance analysis
 from fastapi import FastAPI, Response, HTTPException, UploadFile, File

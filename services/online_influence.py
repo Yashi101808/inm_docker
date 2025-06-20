@@ -1,6 +1,11 @@
+# services/influence_analysis.py
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import io
+from fastapi.responses import StreamingResponse
+from fastapi import HTTPException
+from pathlib import Path
 
 INFLUENCE_KEYWORDS = {
     'Community Engagement': ['community'],
@@ -29,12 +34,14 @@ def classify_influence(text):
                 return influence
     return 'Others'
 
-def load_and_process_data(csv_path):
-    df = pd.read_csv(csv_path)
-    df.columns = df.columns.str.strip()
-    print("Columns in CSV:", df.columns.tolist())
+def generate_influence_chart(csv_path="KPI_Data/online_influence.csv"):
+    csv_file = Path(csv_path)
+    if not csv_file.exists():
+        raise HTTPException(status_code=404, detail=f"CSV file not found at: {csv_file}")
 
-    # Try to use 'Key Influences/Insights', else fallback to 'Specific Feedback'
+    df = pd.read_csv(csv_file)
+    df.columns = df.columns.str.strip()
+
     possible_cols = ["Key Influences/Insights", "Specific Feedback", "Reaction Type"]
     target_col = None
     for col in possible_cols:
@@ -46,18 +53,15 @@ def load_and_process_data(csv_path):
             break
 
     if not target_col:
-        raise ValueError(
-            "Could not find a suitable column for influence classification. "
-            f"Available columns: {df.columns.tolist()}"
-        )
+        raise HTTPException(status_code=400, detail=f"Suitable column not found. Available columns: {df.columns.tolist()}")
 
     df['Influence Type'] = df[target_col].apply(classify_influence)
-    summary = df.groupby(['Platform', 'Influence Type']).size().reset_index(name='Count')
-    return summary
 
-def plot_kpi_bar_chart(summary_df):
-    pivot_df = summary_df.pivot(index='Influence Type', columns='Platform', values='Count').fillna(0)
-    ax = pivot_df.plot(kind='bar', figsize=(12,7))
+    summary = df.groupby(['Platform', 'Influence Type']).size().reset_index(name='Count')
+
+    pivot_df = summary.pivot(index='Influence Type', columns='Platform', values='Count').fillna(0)
+
+    ax = pivot_df.plot(kind='bar', figsize=(12, 7))
     ax.set_ylabel('Number of Discussions')
     ax.set_title('Discussions by Platform and Influence Type')
     ax.legend(title='Platform')
@@ -68,4 +72,5 @@ def plot_kpi_bar_chart(summary_df):
     plt.savefig(buf, format='png')
     plt.close()
     buf.seek(0)
-    return buf
+
+    return StreamingResponse(buf, media_type='image/png')
