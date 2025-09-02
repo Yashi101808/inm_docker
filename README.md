@@ -112,4 +112,4 @@ inm_docker/
 **Yashi Gupta**  
 _Backend Team Lead | Data & Market Analytics_  
 
-🔗 [LinkedIn](https://www.linkedin.com/in/your-link) | [GitHub](https://github.com/Yashi101808)  
+🔗 [LinkedIn](https://www.linkedin.com/in/yashi-gupta18888/) | [GitHub](https://github.com/Yashi101808)  
